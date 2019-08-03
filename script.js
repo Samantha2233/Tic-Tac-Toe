@@ -7,6 +7,14 @@ const COLORS = {
     '-1': '#17A598'
 }
 
+const LETTERS = {
+    null: ' ',
+    '1': 'X',
+    '-1': 'O'
+}
+
+//LETTERS[2].style.color = 'white';
+
 let squares = document.querySelectorAll(".board div");
 const msgEl = document.getElementById('msg');
 
@@ -20,9 +28,10 @@ function init() {
 }
 
 function render() {
-    //get sqaures
     board.forEach(function(sqr, idx) {
         squares[idx].style.backgroundColor = COLORS[sqr];
+        squares[idx].innerHTML = LETTERS[sqr];
+
     })
     document.querySelector('.board').addEventListener('click', handleClick);
 
@@ -30,7 +39,7 @@ function render() {
     if (winner === 'T') {
         msgEl.innerHTML = "you've got a tie!"
     } else if(winner){
-        msgEl.innerHTML = `Congratulations ${COLORS[winner]}`;
+        msgEl.innerHTML = `Congratulations ${COLORS[winner] === '#F3A346' ? "X" : "O"} ! 🎉⚡️`;
     } else {
         msgEl.innerHTML =  `${COLORS[turn] === '#F3A346' ? "X" : "O"}'s Turn`;
     }
